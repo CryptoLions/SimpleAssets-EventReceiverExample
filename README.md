@@ -1,4 +1,4 @@
-# SimpleAssets - Events Reciever Example for SimpleAssets  
+# SimpleAssets - Events Receiver Example for SimpleAssets  
 
 SimpleAssets - A simple standard for digital assets (both fungilbe and NFTs - non-fungible tokens) for EOSIO blockchains.   
 
