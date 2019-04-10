@@ -25,7 +25,7 @@ CONTRACT SAEventReceiver : public contract {
 		ACTION saetransfer( name from, name to, std::vector<uint64_t>& assetids, std::string memo );
 		using saetransfer_action = action_wrapper<"saetransfer"_n, &SAEventReceiver::saetransfer>;
 
-		ACTION saeclaim( name who, std::vector<uint64_t>& assetids );
+		ACTION saeclaim( name who, std::map< uint64_t, name >& assetids );
 		using saeclaim_action = action_wrapper<"saeclaim"_n, &SAEventReceiver::saeclaim>;
 
 		ACTION saeburn( name who, std::vector<uint64_t>& assetids, std::string memo );
