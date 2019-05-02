@@ -13,7 +13,7 @@
 #include <eosiolib/eosio.hpp>
 using namespace eosio;
 
-name SIMPLEASSETS_CONTRACT = "simpl1assets"_n; // SimpleAssets Contract Account
+name SIMPLEASSETS_CONTRACT = "simpleassets"_n; // SimpleAssets Contract Account
 
 CONTRACT SAEventReceiver : public contract {
 	public:
