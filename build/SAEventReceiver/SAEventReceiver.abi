@@ -1,101 +1,22 @@
 {
-    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT Wed Mar 27 12:37:50 2019",
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
     "version": "eosio::abi/1.1",
+    "types": [],
     "structs": [
         {
-            "name": "saeburn",
+            "name": "hi",
             "base": "",
-            "fields": [
-                {
-                    "name": "who",
-                    "type": "name"
-                },
-                {
-                    "name": "assetids",
-                    "type": "uint64[]"
-                },
-                {
-                    "name": "memo",
-                    "type": "string"
-                }
-            ]
-        },
-        {
-            "name": "saeclaim",
-            "base": "",
-            "fields": [
-                {
-                    "name": "who",
-                    "type": "name"
-                },
-                {
-                    "name": "assetids",
-                    "type": "uint64[]"
-                }
-            ]
-        },
-        {
-            "name": "saecreate",
-            "base": "",
-            "fields": [
-                {
-                    "name": "owner",
-                    "type": "name"
-                },
-                {
-                    "name": "assetid",
-                    "type": "uint64"
-                }
-            ]
-        },
-        {
-            "name": "saetransfer",
-            "base": "",
-            "fields": [
-                {
-                    "name": "from",
-                    "type": "name"
-                },
-                {
-                    "name": "to",
-                    "type": "name"
-                },
-                {
-                    "name": "assetids",
-                    "type": "uint64[]"
-                },
-                {
-                    "name": "memo",
-                    "type": "string"
-                }
-            ]
+            "fields": []
         }
     ],
-    "types": [],
     "actions": [
         {
-            "name": "saeburn",
-            "type": "saeburn",
-            "ricardian_contract": "Stub for action's ricardian contract"
-        },
-        {
-            "name": "saeclaim",
-            "type": "saeclaim",
-            "ricardian_contract": "Stub for action's ricardian contract"
-        },
-        {
-            "name": "saecreate",
-            "type": "saecreate",
-            "ricardian_contract": "Stub for action's ricardian contract"
-        },
-        {
-            "name": "saetransfer",
-            "type": "saetransfer",
-            "ricardian_contract": "Stub for action's ricardian contract"
+            "name": "hi",
+            "type": "hi",
+            "ricardian_contract": ""
         }
     ],
     "tables": [],
     "ricardian_clauses": [],
-    "variants": [],
-    "abi_extensions": []
+    "variants": []
 }

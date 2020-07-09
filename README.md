@@ -9,6 +9,8 @@ Presentation:  https://medium.com/@cryptolions/introducing-simple-assets-b4e17ca
 
 by [CryptoLions](https://CryptoLions.io)  
 
+## ChangeLog v0.3
+    - changed way of receiving notifications
 
 ## ChangeLog v0.2
     - format for `saeclaim` event changed: array of assetids replaced by map <assetid, from>

@@ -3,7 +3,7 @@
 ###########################################################################################
 ##
 ##  SimpleAssets (Digital Assets)
-##  (C) 2019 by CryptoLions [ https://CryptoLions.io ]
+##  (C) 2020 by CryptoLions [ https://CryptoLions.io ]
 ##
 ##  A simple standard for digital assets (ie. Non-Fungible Tokens) for EOSIO blockchains
 ##

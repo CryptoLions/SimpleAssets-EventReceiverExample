@@ -1,6 +1,6 @@
 /**
  *  SimpleAssets - Event Receiver Example (Digital Assets)
- *  (C) 2019 by CryptoLions [ https://CryptoLions.io ]
+ *  (C) 2020 by CryptoLions [ https://CryptoLions.io ]
  *
  *  SimpleAssets - A simple standard for digital assets (ie. Non-Fungible Tokens) for EOSIO blockchains
  *
@@ -10,8 +10,9 @@
  * 
  */
  
-#include <eosiolib/eosio.hpp>
+#include <eosio/eosio.hpp>
 using namespace eosio;
+using namespace std;
 
 name SIMPLEASSETS_CONTRACT = "simpleassets"_n; // SimpleAssets Contract Account
 
@@ -19,16 +20,43 @@ CONTRACT SAEventReceiver : public contract {
 	public:
 		using contract::contract;
 
-		ACTION saecreate( name owner, uint64_t assetid );
-		using saecreate_action = action_wrapper<"saecreate"_n, &SAEventReceiver::saecreate>;
+		ACTION hi();
+		using hi_action = action_wrapper<"hi"_n, &SAEventReceiver::hi>;
 
-		ACTION saetransfer( name from, name to, std::vector<uint64_t>& assetids, std::string memo );
-		using saetransfer_action = action_wrapper<"saetransfer"_n, &SAEventReceiver::saetransfer>;
-
-		ACTION saeclaim( name who, std::map< uint64_t, name >& assetids );
-		using saeclaim_action = action_wrapper<"saeclaim"_n, &SAEventReceiver::saeclaim>;
-
-		ACTION saeburn( name who, std::vector<uint64_t>& assetids, std::string memo );
-		using saeburn_action = action_wrapper<"saeburn"_n, &SAEventReceiver::saeburn>;
-	
+	public:
+		void saecreate(name author, name category, name owner, string idata, string mdata, uint64_t assetid, bool requireclaim);
+		void saetransfer(name author, name from, name to, vector<uint64_t>& assetids, string memo);
+		void saeburn(name author, name owner, vector<uint64_t>& assetids, string memo);
+		void saechauthor(name author, name newauthor, name owner, map< uint64_t, name >& assetids, string memo);
+		void saeclaim(name author, name claimer, map< uint64_t, name >& assetids);
 };
+
+extern "C"
+void apply(uint64_t receiver, uint64_t code, uint64_t action) {
+
+	if (code == SIMPLEASSETS_CONTRACT.value && action == "saecreate"_n.value) {
+		eosio::execute_action(eosio::name(receiver), eosio::name(code), &SAEventReceiver::saecreate);
+	}
+	else if (code == SIMPLEASSETS_CONTRACT.value && action == "saetransfer"_n.value) {
+
+		eosio::execute_action(eosio::name(receiver), eosio::name(code), &SAEventReceiver::saetransfer);
+	}
+	else if (code == SIMPLEASSETS_CONTRACT.value && action == "saeburn"_n.value) {
+
+		eosio::execute_action(eosio::name(receiver), eosio::name(code), &SAEventReceiver::saeburn);
+	}
+	else if (code == SIMPLEASSETS_CONTRACT.value && action == "saechauthor"_n.value) {
+
+		eosio::execute_action(eosio::name(receiver), eosio::name(code), &SAEventReceiver::saechauthor);
+	}
+	else if (code == SIMPLEASSETS_CONTRACT.value && action == "saeclaim"_n.value) {
+
+		eosio::execute_action(eosio::name(receiver), eosio::name(code), &SAEventReceiver::saeclaim);
+	}
+	else if (code == receiver) {
+
+		switch (action) {
+			EOSIO_DISPATCH_HELPER(SAEventReceiver, (hi))
+		}
+	}
+}

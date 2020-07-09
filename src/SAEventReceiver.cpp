@@ -13,36 +13,47 @@
 #include <SAEventReceiver.hpp>
 
 
-ACTION SAEventReceiver::saecreate( name owner, uint64_t assetid ) {
+void SAEventReceiver::saecreate(name author, name category, name owner, string idata, string mdata, uint64_t assetid, bool requireclaim)
+{
 	print_f("Asset created. Owner: %, assetid: % \n", owner, assetid);
 }
 
-
-ACTION SAEventReceiver::saetransfer( name from, name to, std::vector<uint64_t>& assetids, std::string memo ) {
-
-	for( size_t i = 0; i < assetids.size(); i++ ) {
+void SAEventReceiver::saetransfer(name author, name from, name to, vector<uint64_t>& assetids, string memo)
+{
+	for (size_t i = 0; i < assetids.size(); i++) {
 		print_f("Asset transfered. From % to %; assetid: % ; memo: % \n", from, to, assetids[i], memo);
 	}
 }
 
+void SAEventReceiver::saeburn(name author, name owner, vector<uint64_t>& assetids, string memo)
+{
+	for (size_t i = 0; i < assetids.size(); i++) {
+		print_f("Asset burned. assetid: % ; memo: % \n",  assetids[i], memo);
+	}
+}
 
-ACTION SAEventReceiver::saeclaim( name who, std::map< uint64_t, name>& assetids ) {
-
-	auto assetidsIt = assetids.begin(); 
-	while(assetidsIt != assetids.end() ) {
-		uint64_t keyid = (*assetidsIt).first; 
-		print_f("Asset claimed. From: %, Who: %, assetid: % \n", assetids[keyid], who, keyid);
+void SAEventReceiver::saechauthor(name author, name newauthor, name owner, map< uint64_t, name >& assetids, string memo)
+{
+	auto assetidsIt = assetids.begin();
+	while (assetidsIt != assetids.end()) {
+		uint64_t keyid = (*assetidsIt).first;
+		print_f("Asset claimed. From: %, assetid: % \n", assetids[keyid], keyid);
 
 		assetidsIt++;
 	}
-	
 }
 
-ACTION SAEventReceiver::saeburn( name who, std::vector<uint64_t>& assetids, std::string memo ) {
-	
-	for( size_t i = 0; i < assetids.size(); i++ ) {
-		print_f("Asset burned. Who: %, assetid: % ; memo: % \n", who, assetids[i], memo);
+void SAEventReceiver::saeclaim(name author, name claimer, map< uint64_t, name >& assetids)
+{
+	auto assetidsIt = assetids.begin();
+	while (assetidsIt != assetids.end()) {
+		uint64_t keyid = (*assetidsIt).first;
+		print_f("Asset claimed. From: %, assetid: % \n", assetids[keyid], keyid);
+
+		assetidsIt++;
 	}
 }
 
-EOSIO_DISPATCH( SAEventReceiver, (saecreate)(saetransfer)(saeclaim)(saeburn) )
+ACTION SAEventReceiver::hi() {
+	print("\n hi");
+}
